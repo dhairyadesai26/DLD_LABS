@@ -1,0 +1,85 @@
+#! /mingw64/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\msys64\mingw64\lib\ivl\system.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\va_math.vpi";
+S_0000024314ecbdf0 .scope module, "nand_xnor_tb" "nand_xnor_tb" 2 2;
+ .timescale -9 -12;
+v00000243150d3890_0 .var "a", 0 0;
+v00000243150d3930_0 .var "b", 0 0;
+v00000243150d39d0_0 .net "y", 0 0, L_00000243150d4240;  1 drivers
+S_0000024315088620 .scope module, "uut" "nand_xnor" 2 4, 3 2 0, S_0000024314ecbdf0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "y";
+L_00000243150d4550 .functor AND 1, L_00000243150d4080, L_00000243150d4080, C4<1>, C4<1>;
+L_00000243150d4240 .functor NOT 1, L_00000243150d4550, C4<0>, C4<0>, C4<0>;
+v00000243150d3390_0 .net *"_ivl_0", 0 0, L_00000243150d4550;  1 drivers
+v00000243150d3250_0 .net "a", 0 0, v00000243150d3890_0;  1 drivers
+v00000243150d3b10_0 .net "b", 0 0, v00000243150d3930_0;  1 drivers
+v00000243150d3c50_0 .net "xor_out", 0 0, L_00000243150d4080;  1 drivers
+v00000243150d3430_0 .net "y", 0 0, L_00000243150d4240;  alias, 1 drivers
+S_00000243150887b0 .scope module, "g1" "nand_xor" 3 4, 4 1 0, S_0000024315088620;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "y";
+L_0000024314ecdd10 .functor AND 1, v00000243150d3890_0, v00000243150d3930_0, C4<1>, C4<1>;
+L_0000024314ec77f0 .functor NOT 1, L_0000024314ecdd10, C4<0>, C4<0>, C4<0>;
+L_0000024314ecc160 .functor AND 1, v00000243150d3890_0, L_0000024314ec77f0, C4<1>, C4<1>;
+L_00000243150d4470 .functor NOT 1, L_0000024314ecc160, C4<0>, C4<0>, C4<0>;
+L_00000243150d4160 .functor AND 1, v00000243150d3930_0, L_0000024314ec77f0, C4<1>, C4<1>;
+L_00000243150d41d0 .functor NOT 1, L_00000243150d4160, C4<0>, C4<0>, C4<0>;
+L_00000243150d44e0 .functor AND 1, L_00000243150d4470, L_00000243150d41d0, C4<1>, C4<1>;
+L_00000243150d4080 .functor NOT 1, L_00000243150d44e0, C4<0>, C4<0>, C4<0>;
+v0000024314ec7a10_0 .net *"_ivl_0", 0 0, L_0000024314ecdd10;  1 drivers
+v00000243150d37f0_0 .net *"_ivl_12", 0 0, L_00000243150d44e0;  1 drivers
+v00000243150d3610_0 .net *"_ivl_4", 0 0, L_0000024314ecc160;  1 drivers
+v00000243150d3570_0 .net *"_ivl_8", 0 0, L_00000243150d4160;  1 drivers
+v00000243150d36b0_0 .net "a", 0 0, v00000243150d3890_0;  alias, 1 drivers
+v00000243150d3a70_0 .net "b", 0 0, v00000243150d3930_0;  alias, 1 drivers
+v00000243150d3e30_0 .net "t1", 0 0, L_0000024314ec77f0;  1 drivers
+v00000243150d32f0_0 .net "t2", 0 0, L_00000243150d4470;  1 drivers
+v00000243150d3ed0_0 .net "t3", 0 0, L_00000243150d41d0;  1 drivers
+v00000243150d3750_0 .net "y", 0 0, L_00000243150d4080;  alias, 1 drivers
+    .scope S_0000024314ecbdf0;
+T_0 ;
+    %vpi_call 2 7 "$dumpfile", "nand_xnor.vcd" {0 0 0};
+    %vpi_call 2 7 "$dumpvars", 32'sb00000000000000000000000000000000, S_0000024314ecbdf0 {0 0 0};
+    %vpi_call 2 8 "$display", "A B | XNOR(using NAND)" {0 0 0};
+    %vpi_call 2 9 "$monitor", "%b %b | %b", v00000243150d3890_0, v00000243150d3930_0, v00000243150d39d0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000243150d3890_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000243150d3930_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000243150d3890_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000243150d3930_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000243150d3890_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000243150d3930_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000243150d3890_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000243150d3930_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call 2 10 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "nand_xnor_tb.v";
+    "nand_xnor.v";
+    "./nand_xor.v";

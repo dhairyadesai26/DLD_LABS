@@ -1,0 +1,68 @@
+#! /mingw64/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\msys64\mingw64\lib\ivl\system.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\msys64\mingw64\lib\ivl\va_math.vpi";
+S_000001c7bc879d10 .scope module, "nand_or_tb" "nand_or_tb" 2 2;
+ .timescale -9 -12;
+v000001c7bc910790_0 .var "a", 0 0;
+v000001c7bc910330_0 .var "b", 0 0;
+v000001c7bc90fed0_0 .net "y", 0 0, L_000001c7bc87c100;  1 drivers
+S_000001c7bc87d680 .scope module, "uut" "nand_or" 2 4, 3 1 0, S_000001c7bc879d10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "y";
+L_000001c7bc879910 .functor AND 1, v000001c7bc910790_0, v000001c7bc910790_0, C4<1>, C4<1>;
+L_000001c7bc878070 .functor NOT 1, L_000001c7bc879910, C4<0>, C4<0>, C4<0>;
+L_000001c7bc877550 .functor AND 1, v000001c7bc910330_0, v000001c7bc910330_0, C4<1>, C4<1>;
+L_000001c7bc877790 .functor NOT 1, L_000001c7bc877550, C4<0>, C4<0>, C4<0>;
+L_000001c7bc87c260 .functor AND 1, L_000001c7bc878070, L_000001c7bc877790, C4<1>, C4<1>;
+L_000001c7bc87c100 .functor NOT 1, L_000001c7bc87c260, C4<0>, C4<0>, C4<0>;
+v000001c7bc8779b0_0 .net *"_ivl_0", 0 0, L_000001c7bc879910;  1 drivers
+v000001c7bc879ea0_0 .net *"_ivl_4", 0 0, L_000001c7bc877550;  1 drivers
+v000001c7bc877fd0_0 .net *"_ivl_8", 0 0, L_000001c7bc87c260;  1 drivers
+v000001c7bc879870_0 .net "a", 0 0, v000001c7bc910790_0;  1 drivers
+v000001c7bc87d810_0 .net "b", 0 0, v000001c7bc910330_0;  1 drivers
+v000001c7bc910290_0 .net "na", 0 0, L_000001c7bc878070;  1 drivers
+v000001c7bc90f930_0 .net "nb", 0 0, L_000001c7bc877790;  1 drivers
+v000001c7bc90f890_0 .net "y", 0 0, L_000001c7bc87c100;  alias, 1 drivers
+    .scope S_000001c7bc879d10;
+T_0 ;
+    %vpi_call 2 7 "$dumpfile", "nand_or.vcd" {0 0 0};
+    %vpi_call 2 7 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001c7bc879d10 {0 0 0};
+    %vpi_call 2 8 "$display", "A B | OR(using NAND)" {0 0 0};
+    %vpi_call 2 9 "$monitor", "%b %b | %b", v000001c7bc910790_0, v000001c7bc910330_0, v000001c7bc90fed0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001c7bc910790_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001c7bc910330_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001c7bc910790_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001c7bc910330_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001c7bc910790_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001c7bc910330_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001c7bc910790_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001c7bc910330_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call 2 10 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "nand_or_tb.v";
+    "nand_or.v";
